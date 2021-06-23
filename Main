@@ -7,7 +7,7 @@ import wikihowunofficialapi as wha
 import wikipedia
 import wikipedia.exceptions as we
 import requests
-api = Api(api_key="AIzaSyCmcoaEPb0gJWu7c2DLqZcjheTqZOCeuv0")
+
 wordstolookfor = ["why", "how", "who", "?", "what"]
 pagetit = ""
 print('"gs:" to only search Google \n'
