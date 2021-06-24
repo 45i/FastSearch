@@ -102,7 +102,7 @@ elif slist[0] == "yt:":
     request = requests.get(
         f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&q={stringslicedy}&type=video&key=[Your API Key]")
     response = request.json()
-    print(response['items']['snippet']['title'])
+    print(response)
     #print(response.items.stringify())
     html = url.urlopen(f"https://www.youtube.com/results?search_query={stringslicedy}")
     print(f"https://www.youtube.com/results?search_query={stringslicedy}")
