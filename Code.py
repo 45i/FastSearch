@@ -14,8 +14,10 @@ print('"gs:" to only search Google \n'
       '"bn:" to only search Bing\n'
       '"pip:" to search pypi.org\n'
       '"yt:" to search videos on YouTube (Work In Progress)\n'
+      '"tr:" to translate word(s) (Work In Progress)\n'
       '"rickroll" to generate a rickroll link so that you can troll your friends ;)\n'
-      '"random" to find a random Wikipedia article')
+      '"random" to find a random Wikipedia article\n'
+      '"fact" to generate a random fact')
 searchforwhat = input("searching for?: ")
 
 getaritcles = wha.search_wikihow(searchforwhat)
@@ -76,7 +78,135 @@ if slist[0] == "bg:":
     stringsliced4 = string4[0:len(string4) - 1]
 if slist[0] == "yt:":
     stringslicedy = stringy[0:len(stringy) - 3]
-if slist[0] == "how":
+if slist[0] == "tr:":
+    c=1
+    translatesentence=""
+    tr=0
+    lan = input("translate to? (provide a language code [eg: french -> fr])")
+    langlist = {
+        'AA': 'Afar',
+        'AB': 'Abkhazian',
+        'AB': 'Alberta',
+        'AE': '	American Eskimo',
+        'AF': 'Afrikaans',
+        'AF': 'Anglo-French',
+        'AM': 'Amharic',
+        'AR': 'Arabic',
+        'AR-AE': 'United Arab Emirate Arabic',
+        'AR-BH': 'Bahraini Arabic',
+        'AR-DZ': 'Algerian Arabic',
+        'AR-EG': 'Egyptian Arabic',
+        'AR-IQ': 'Iraqi Arabic',
+        'AR-JO': 'Jordanian Arabic',
+        'AR-KW': 'Kuwaiti Arabic',
+        'AR-LB': 'Lebanese Arabic',
+        'AR-LY': 'Libyan Arabic',
+        'AR-MA': 'Moroccan Arabic',
+        'AR-OM': 'Omani Arabic',
+        'AR-QA': 'Qatari Arabic',
+        'AR-SA': 'Saudi Arabian Arabic',
+        'AR-SY': 'Syrian Arabic',
+        'AR-TN': 'Tunisian Arabia',
+        'AR-YE': 'Yemeni Arabic',
+        'AS': 'Assamese',
+        'AY': 'Aymara',
+        'AZ': 'Azerbaijani',
+        'BA': 'Bashkir',
+        'BE': 'Byelorussian',
+        'BG': 'Bulgarian',
+        'BH': 'Bihari',
+        'BI': 'Bislama',
+        'BN': 'Bangla',
+        'BO': 'Tibetan',
+        'BP': 'Brazilian Portuguese',
+        'BR': 'Breton',
+        'CA': 'Catalan',
+        'CF': 'Canadian French',
+        'CH': 'Colloquial Hebrew',
+        'CO': 'Corsican',
+        'CR': 'Czech Republic',
+        'CS': 'Czech',
+        'CY': 'Welsh',
+        'DE': 'DEutsch (German)',
+        'DE-AT': 'German (Austria)',
+        'DE-CH': 'German (Switzerland)',
+        'DE-LI': 'German (Liechtenstein)',
+        'DE-LU': 'German (Luxembourg)',
+        'DR': 'Dominican Republic',
+        'DT': 'Deutsch (German)',
+        'DZ': 'Bhutani',
+        'EF': 'English French',
+        'EG': 'English German',
+        'EJ': 'English Japanese',
+        'EL': 'Greek',
+        'EN': 'English',
+        'EN-AU': 'Australian English',
+        'EN-BZ': 'English (Belize)',
+        'EN-CA': 'Canadian English',
+        'EN-GB': 'English (United Kingdom)',
+        'EN-IE': 'English (Ireland)',
+        'EN-JM': 'English (Jamaica)',
+        'EN-NZ': 'English (New Zealand)',
+        'EN-TT': 'English (Trinidad)',
+        'EN-US': 'English (United States)',
+        'EN-ZA': 'English (South Africa)',
+        'EO': 'Esperanto',
+        'EP': 'European Portuguese',
+        'ER': 'English Russian',
+        'ES': 'Spanish',
+        'ES-AR':	'Spanish (Argentina)',
+        'ES-BO':	'Spanish (Bolivia)',
+        'ES-CL':	'Spanish (Chile)',
+        'ES-CO':	'Spanish (Colombia)',
+        'ES-CR':	'Spanish (Costa Rica)',
+        'ES-DO':	'Spanish (Dominican Republic)',
+        'ES-EC':	'Spanish (Ecuador)',
+        'ES-GT':	'Spanish (Guatemala)',
+        'ES-HN':	'Spanish (Honduras)',
+        'ES-MX':	'Spanish (Mexico)',
+        'ES-NI':	'Spanish (Nicaragua)',
+        'ES-PA':	'Spanish (Panama)',
+        'ES-PE':	'Spanish (Peru)',
+        'ES-PR':	'Spanish (Puerto Rico)',
+        'ES-PY':	'Spanish (Paraguay)',
+        'ES-SV':	'Spanish (El Salvador)',
+        'ES-UY':	'Spanish (Uruguay)',
+        'ES-VE':	'Spanish (Venezuela)',
+        'ET':	'Estonian',
+        'EU':	'Basque',
+        'FA':	'Farsi (Persian)',
+        'FE':	'Foreignish English',
+        'FI':	'Finnish',
+        'FJ':	'Fiji',
+        'FO':	'Faroese',
+        'HI': 'Hindi'}
+    while c < len(slist):
+        translatesentence=translatesentence + slist[c] + " "
+        c+=1
+    print(translatesentence)
+    if langlist.get(lan) != None:
+        lan_conf = input(f'Did you mean {langlist.get(lan)}? REACT WITH: "yes"/ "no" ')
+        if "yes" in lan_conf.lower():
+            translatesentence_split= translatesentence.split()
+            while tr < len(translatesentence_split):
+                en_to_lang = translate("en", f"{lan.lower()}")
+                translated_word = en_to_lang(translatesentence_split[tr])
+                print(f'"{translatesentence_split[tr]}" can be translated to {langlist.get(lan)} as:')
+                while t < len(translated_word):
+                    print(translated_word[t])
+                    t += 1
+                tr+=1
+                t=0
+        elif "no" in lan_conf.lower():
+            print(
+                "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
+    else:
+        print("Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
+
+
+elif slist[0] == "fact":
+    print(facts.random_fact())
+elif slist[0] == "how":
     t0 = time.time()
 
     articleurl = wha.Article(f'https://www.wikihow.com/{stringsliced}')
