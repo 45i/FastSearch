@@ -7,7 +7,11 @@ import wikihowunofficialapi as wha
 import wikipedia
 import wikipedia.exceptions as we
 import requests
+import json
+from word2word import Word2word as translate
+import py8fact as facts
 
+api = Api(api_key="api key here")
 wordstolookfor = ["why", "how", "who", "?", "what"]
 pagetit = ""
 print('"gs:" to only search Google \n'
@@ -51,6 +55,7 @@ while l < (len(slist)):
 j = 1
 h = 1
 y = 1
+t = 0
 string4 = ""
 stringy = ""
 stringslicedy = ""
@@ -79,9 +84,10 @@ if slist[0] == "bg:":
 if slist[0] == "yt:":
     stringslicedy = stringy[0:len(stringy) - 3]
 if slist[0] == "tr:":
-    c=1
-    translatesentence=""
-    tr=0
+    c = 1
+    translatesentence = ""
+
+    tr = 0
     lan = input("translate to? (provide a language code [eg: french -> fr])")
     langlist = {
         'AA': 'Afar',
@@ -154,40 +160,41 @@ if slist[0] == "tr:":
         'EP': 'European Portuguese',
         'ER': 'English Russian',
         'ES': 'Spanish',
-        'ES-AR':	'Spanish (Argentina)',
-        'ES-BO':	'Spanish (Bolivia)',
-        'ES-CL':	'Spanish (Chile)',
-        'ES-CO':	'Spanish (Colombia)',
-        'ES-CR':	'Spanish (Costa Rica)',
-        'ES-DO':	'Spanish (Dominican Republic)',
-        'ES-EC':	'Spanish (Ecuador)',
-        'ES-GT':	'Spanish (Guatemala)',
-        'ES-HN':	'Spanish (Honduras)',
-        'ES-MX':	'Spanish (Mexico)',
-        'ES-NI':	'Spanish (Nicaragua)',
-        'ES-PA':	'Spanish (Panama)',
-        'ES-PE':	'Spanish (Peru)',
-        'ES-PR':	'Spanish (Puerto Rico)',
-        'ES-PY':	'Spanish (Paraguay)',
-        'ES-SV':	'Spanish (El Salvador)',
-        'ES-UY':	'Spanish (Uruguay)',
-        'ES-VE':	'Spanish (Venezuela)',
-        'ET':	'Estonian',
-        'EU':	'Basque',
-        'FA':	'Farsi (Persian)',
-        'FE':	'Foreignish English',
-        'FI':	'Finnish',
-        'FJ':	'Fiji',
-        'FO':	'Faroese',
+        'ES-AR': 'Spanish (Argentina)',
+        'ES-BO': 'Spanish (Bolivia)',
+        'ES-CL': 'Spanish (Chile)',
+        'ES-CO': 'Spanish (Colombia)',
+        'ES-CR': 'Spanish (Costa Rica)',
+        'ES-DO': 'Spanish (Dominican Republic)',
+        'ES-EC': 'Spanish (Ecuador)',
+        'ES-GT': 'Spanish (Guatemala)',
+        'ES-HN': 'Spanish (Honduras)',
+        'ES-MX': 'Spanish (Mexico)',
+        'ES-NI': 'Spanish (Nicaragua)',
+        'ES-PA': 'Spanish (Panama)',
+        'ES-PE': 'Spanish (Peru)',
+        'ES-PR': 'Spanish (Puerto Rico)',
+        'ES-PY': 'Spanish (Paraguay)',
+        'ES-SV': 'Spanish (El Salvador)',
+        'ES-UY': 'Spanish (Uruguay)',
+        'ES-VE': 'Spanish (Venezuela)',
+        'ET': 'Estonian',
+        'EU': 'Basque',
+        'FA': 'Farsi (Persian)',
+        'FE': 'Foreignish English',
+        'FI': 'Finnish',
+        'FJ': 'Fiji',
+        'FO': 'Faroese',
         'HI': 'Hindi'}
+    translatedsentence = ""
     while c < len(slist):
-        translatesentence=translatesentence + slist[c] + " "
-        c+=1
+        translatesentence = translatesentence + slist[c] + " "
+        c += 1
     print(translatesentence)
     if langlist.get(lan) != None:
         lan_conf = input(f'Did you mean {langlist.get(lan)}? REACT WITH: "yes"/ "no" ')
         if "yes" in lan_conf.lower():
-            translatesentence_split= translatesentence.split()
+            translatesentence_split = translatesentence.split()
             while tr < len(translatesentence_split):
                 en_to_lang = translate("en", f"{lan.lower()}")
                 translated_word = en_to_lang(translatesentence_split[tr])
@@ -195,13 +202,20 @@ if slist[0] == "tr:":
                 while t < len(translated_word):
                     print(translated_word[t])
                     t += 1
-                tr+=1
-                t=0
+                wrd = translatesentence[0]
+
+                translatedsentence = translatedsentence + translated_word[0] + " "
+                tr += 1
+                t = 0
+
+            print(
+                f'Thus you could write "{translatesentence}" as "{translatedsentence}" [TRANSLATION MAY BE INCORRECT]')
         elif "no" in lan_conf.lower():
             print(
                 "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
     else:
-        print("Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
+        print(
+            "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
 
 
 elif slist[0] == "fact":
@@ -230,31 +244,36 @@ elif slist[0] == "who" or slist[0] == "gs:":
     print(f"visit: https://www.google.com/search?q={stringsliced2}")
 elif slist[0] == "yt:":
     request = requests.get(
-        f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&q={stringslicedy}&type=video&key=[Your API Key]")
+        f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&q={stringslicedy}&type=video&key=[YOUR API KEY HERE]")
     response = request.json()
-    print(response)
-    #print(response.items.stringify())
+    # json_file = json.dump(response, indent=6)
+    # keys= response.keys()
+
+    # kind= keys['items']
+    # print(json_file)
+    # print(response.items.stringify())
     html = url.urlopen(f"https://www.youtube.com/results?search_query={stringslicedy}")
     print(f"https://www.youtube.com/results?search_query={stringslicedy}")
     Vid_ID = reg.findall(r"watch\?v=(\S{11})", html.read().decode())
-    #Vid_Title = reg.findall(r"'title': '()'", response)
-    #print (Vid_Title)
+    # Vid_Title = reg.findall(r"'title': '()'", response)
+    # print (Vid_Title)
+
     print("List of Videos found on Youtube:")
     while q < len(Vid_ID):
         vidurl = Vid_ID[q]
         video_by_id = api.get_video_by_id(video_id=vidurl)
 
-         #video_by_id
-        #VideoListResponse(kind='youtube#videoListResponse')
+        # video_by_id
+        # VideoListResponse(kind='youtube#videoListResponse')
 
-         #video_by_id.items
-        #[Video(kind='youtube#video', id='CvTApw9X8aA')]
-        url = f"{q+1} https://www.youtube.com/watch?v={vidurl}"
+        # video_by_id.items
+        # [Video(kind='youtube#video', id='CvTApw9X8aA')]
+        url = f"{q + 1} https://www.youtube.com/watch?v={vidurl}"
         # urltest="https://www.youtube.com/watch?v=Xm7gtOi2pnc"
         # v= Video(urltest)
         print(url)
         q = q + 1
-    print (f"Found {q} URLs")
+    print(f"Found {q} URLs")
 
 elif slist[0] == "pip:":
     print(f"visit: https://pypi.org/search/?q={stringsliced5}/")
@@ -297,7 +316,6 @@ else:
                 winsound.MessageBeep()
 
     except we.PageError as e:
-
         print("""\033[1;33;40m Uh Oh an error has occurred!:(
         Try rephrasing the question, or try again! \033[0;37;40m""")
         # print(f"searched for {searchforwhat.lower()} but found {pagetit.lower()}")
