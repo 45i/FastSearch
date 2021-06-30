@@ -10,6 +10,7 @@ import requests
 import json
 from word2word import Word2word as translate
 import py8fact as facts
+from translate import Translator
 
 api = Api(api_key="api key here")
 wordstolookfor = ["why", "how", "who", "?", "what"]
@@ -89,6 +90,8 @@ if slist[0] == "tr:":
 
     tr = 0
     lan = input("translate to? (provide a language code [eg: french -> fr])")
+
+
     langlist = {
         'AA': 'Afar',
         'AB': 'Abkhazian',
@@ -194,29 +197,50 @@ if slist[0] == "tr:":
     if langlist.get(lan) != None:
         lan_conf = input(f'Did you mean {langlist.get(lan)}? REACT WITH: "yes"/ "no" ')
         if "yes" in lan_conf.lower():
-            translatesentence_split = translatesentence.split()
-            while tr < len(translatesentence_split):
-                en_to_lang = translate("en", f"{lan.lower()}")
-                translated_word = en_to_lang(translatesentence_split[tr])
-                print(f'"{translatesentence_split[tr]}" can be translated to {langlist.get(lan)} as:')
-                while t < len(translated_word):
-                    print(translated_word[t])
-                    t += 1
-                wrd = translatesentence[0]
+            usemodel = input(
+                "Do you want to use a Word to Word model( Recommended for single word translations) or the Google Translator Model( Recommended for sentence translations) ? React with 1 or 2 ")
+            if "1" in usemodel.lower():
+                translatesentence_split = translatesentence.split()
 
-                translatedsentence = translatedsentence + translated_word[0] + " "
-                tr += 1
-                t = 0
+                while tr < len(translatesentence_split):
 
-            print(
-                f'Thus you could write "{translatesentence}" as "{translatedsentence}" [TRANSLATION MAY BE INCORRECT]')
+                    en_to_lang = translate("en", f"{lan.lower()}")
+
+                    translated_word = en_to_lang(translatesentence_split[tr])
+
+                    print(f'"{translatesentence_split[tr]}" can be translated to {langlist.get(lan)} as:')
+
+                    while t < len(translated_word):
+                        print(translated_word[t])
+
+                        t += 1
+
+                    wrd = translatesentence[0]
+
+                    translatedsentence = translatedsentence + translated_word[0] + " "
+
+                    tr += 1
+
+                    t = 0
+
+                print(
+
+                    f'Thus you could write "{translatesentence}" as "{translatedsentence}" [TRANSLATION MAY BE INCORRECT]')
+            elif "2" in usemodel.lower():
+                lan_from = input("translate from? (provide a language code [eg: french -> fr])")
+                if lan_from==None:
+                    translator = Translator(to_lang=f"{lan}", from_lang="EN")
+                else:
+                    translator = Translator(to_lang=f"{lan}",from_lang=f"{lan_from.lower()}")
+                translation = translator.translate(translatesentence)
+                print(translation)
+
         elif "no" in lan_conf.lower():
             print(
                 "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
     else:
         print(
             "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
-
 
 elif slist[0] == "fact":
     print(facts.random_fact())
