@@ -240,7 +240,7 @@ if slist[0] == "tr:":
                 "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
     else:
         print(
-            "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
+            "Well it looks like the language code doesn't exist :O")
 
 elif slist[0] == "fact":
     print(facts.random_fact())
