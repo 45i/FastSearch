@@ -86,12 +86,11 @@ if slist[0] == "yt:":
     stringslicedy = stringy[0:len(stringy) - 3]
 if slist[0] == "tr:":
     c = 1
-    translatesentence = ""
+        translatesentence = ""
 
     tr = 0
-    lan = input("translate to? (provide a language code [eg: french -> fr])")
-
-
+    lang = input("translate to? (provide a language code [eg: french -> fr])")
+    lan= lang.upper()
     langlist = {
         'AA': 'Afar',
         'AB': 'Abkhazian',
@@ -188,7 +187,32 @@ if slist[0] == "tr:":
         'FI': 'Finnish',
         'FJ': 'Fiji',
         'FO': 'Faroese',
-        'HI': 'Hindi'}
+        'FR': 'French',
+        'FR-BE': 'French (Belgium)',
+        'FR-CA': 'French (Canada)',
+        'FR-CH': 'French (Switzerland)',
+        'FR-LU': 'French (Luxembourg)',
+        'FY': 'Frisian',
+        'GA': 'Gaelic (Irish)',
+        'GD': 'Scots Gaelic',
+        'GL': 'Galician',
+        'GL': 'Great Lakes (USA)',
+        'GN': 'Guarani',
+        'GU': 'Gujarati',
+        'HA': 'Hausa',
+        'HE': 'Hebrew',
+        'HI': 'Hindi',
+        'HM': 'Hangul Mal (Kor) Korean Speaking Language',
+        'HR': 'Croatian',
+        'HU': 'Hungarian',
+        'HY': 'Armenian',
+        'IA': 'Interlingua',
+        'IE': 'Interlingue',
+        'IK': 'Inupiak',
+        'IL': 'Illinois',
+        'IN': 'Indonesian',
+        'IS': 'Icelandic'
+    }
     translatedsentence = ""
     while c < len(slist):
         translatesentence = translatesentence + slist[c] + " "
