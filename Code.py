@@ -211,7 +211,32 @@ if slist[0] == "tr:":
         'IK': 'Inupiak',
         'IL': 'Illinois',
         'IN': 'Indonesian',
-        'IS': 'Icelandic'
+        'IS': 'Icelandic',
+        'IT': 'Italian',
+        'IT-CH': 'Italian (Switzerland)',
+        'IW': 'Hebrew',
+        'JA': 'Japanese',
+        'JI': 'Yiddish',
+        'JV': 'Javanese',
+        'KA': 'Georgian',
+        'KK': 'Kazakh',
+        'KL': 'Greenlandic',
+        'KM': 'Cambodian',
+        'KN': 'Kannada',
+        'KO': 'Korean',
+        'KO': 'Korean (Johab)',
+        'KS': 'Kashmiri',
+        'KU': 'Kurdish',
+        'KY': 'Kirghiz',
+        'LA': 'Latin',
+        'LN': 'Lingala',
+        'LO': 'Laothian',
+        'LS': 'Los Santos',
+        'LT': 'Lithuanian',
+        'LV': 'Latvian',
+        'LV': 'Lettish',
+        'MG': 'Malagasy',
+        'MI': 'Maori',
     }
     translatedsentence = ""
     while c < len(slist):
@@ -252,10 +277,9 @@ if slist[0] == "tr:":
                     f'Thus you could write "{translatesentence}" as "{translatedsentence}" [TRANSLATION MAY BE INCORRECT]')
             elif "2" in usemodel.lower():
                 lan_from = input("translate from? (provide a language code [eg: french -> fr])")
-                if lan_from==None:
-                    translator = Translator(to_lang=f"{lan}", from_lang="EN")
-                else:
-                    translator = Translator(to_lang=f"{lan}",from_lang=f"{lan_from.lower()}")
+
+
+                translator = Translator(to_lang=f"{lan.lower()}", from_lang="EN")
                 translation = translator.translate(translatesentence)
                 print(translation)
 
