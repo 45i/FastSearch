@@ -316,36 +316,43 @@ elif slist[0] == "who" or slist[0] == "gs:":
     print(f"visit: https://www.google.com/search?q={stringsliced2}")
 elif slist[0] == "yt:":
     request = requests.get(
-        f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&q={stringslicedy}&type=video&key=[YOUR API KEY HERE]")
+        f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&q={stringslicedy}&type=video&key=AIzaSyDEbqnLJiWP7T9IrIDFe4yjkOIYlt6g2e0")
     response = request.json()
-    # json_file = json.dump(response, indent=6)
-    # keys= response.keys()
 
-    # kind= keys['items']
-    # print(json_file)
-    # print(response.items.stringify())
+    print(response)
+
     html = url.urlopen(f"https://www.youtube.com/results?search_query={stringslicedy}")
     print(f"https://www.youtube.com/results?search_query={stringslicedy}")
     Vid_ID = reg.findall(r"watch\?v=(\S{11})", html.read().decode())
-    # Vid_Title = reg.findall(r"'title': '()'", response)
-    # print (Vid_Title)
 
-    print("List of Videos found on Youtube:")
-    while q < len(Vid_ID):
-        vidurl = Vid_ID[q]
-        video_by_id = api.get_video_by_id(video_id=vidurl)
+    q_copy = q
+    print("List of Popular Videos found on Youtube:")
+    code_list = []
+    countr = 0
+    while countr < len((response['items'])):
+        code_list == code_list.append(response['items'][countr]['id']['videoId'])
+        countr += 1
 
-        # video_by_id
-        # VideoListResponse(kind='youtube#videoListResponse')
+    while q < len(code_list):
+        q_copy = q
 
-        # video_by_id.items
-        # [Video(kind='youtube#video', id='CvTApw9X8aA')]
-        url = f"{q + 1} https://www.youtube.com/watch?v={vidurl}"
-        # urltest="https://www.youtube.com/watch?v=Xm7gtOi2pnc"
-        # v= Video(urltest)
-        print(url)
+        title = response['items'][q]['snippet']['title']
+
+        url = f"{q + 1} https://www.youtube.com/watch?v={code_list[q]} "
+
+        print(f"{url} | {title}")
         q = q + 1
-    print(f"Found {q} URLs")
+        q_copy = q_copy + 1
+    print(f"Found {q} URLs (Popular Videos)")
+    q = 0
+    print("List of all videos on YouTube")
+    while q < len(Vid_ID):
+        url = f"{q + 1} https://www.youtube.com/watch?v={Vid_ID[q]} "
+
+        print(f"{url}")
+        q = q + 1
+
+    print(f"Found {q} URLs ")
 
 elif slist[0] == "pip:":
     print(f"visit: https://pypi.org/search/?q={stringsliced5}/")
