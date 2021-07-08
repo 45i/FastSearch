@@ -28,6 +28,7 @@ To search WikiHow, you require a prefix.
 Took approximately 1 seconds to load results from WikiHow
 For more information on Hunt, visit https://www.wikihow.com/Hunt 
 Keep in Mind :
+    
     > While hunting, stay as quiet as possible so you don't spook any close animals you are hunting.
 
     > Reference solunar tables to find the times that game are most active in your area.
