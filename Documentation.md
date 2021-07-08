@@ -20,7 +20,7 @@ For more information on Dinosaur, visit https://en.wikipedia.org/wiki/Dinosaur
 ## Taking the input
 To search WikiHow, you require a prefix.
 ### Search String Format:
-> **How to** <your search string here>
+> **How to** [your search string here]
   - ### Example Input
     > **how to** hunt
 ### Example Output
