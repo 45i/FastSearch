@@ -43,3 +43,16 @@ For more information on Hunt, visit https://www.wikihow.com/Hunt
     > Never hunt from your car. You don't know what you might accidentally hit, and in many places there are laws against it.
 
     > Related skills, like how to butcher deer or other animals you hunt, are also valuable when hunting.
+
+# Query Generators
+  - ## Google
+    Prefix:-  * "**gs:** "
+              * "Who is "
+    ### Example Input
+    - gs: Who is Dwayne Johnson?
+    - Who is Dwayne Johnson?
+    ### Example Output 
+    - visit: https://www.google.com/search?q=who%20is%20dwayne%20johnson
+    - visit: https://www.google.com/search?q=who%20is%20dwayne%20johnson
+  - ## Bing
+    Prefix:-  
