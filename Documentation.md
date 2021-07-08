@@ -46,8 +46,8 @@ For more information on Hunt, visit https://www.wikihow.com/Hunt
 
 # Query Generators
   - ## Google
-    Prefix:-  * "**gs:** "
-              * "Who is "
+    Prefix:-  - "**gs:** "
+              - "Who is "
     ### Example Input
     - gs: Who is Dwayne Johnson?
     - Who is Dwayne Johnson?
