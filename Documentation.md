@@ -27,6 +27,7 @@ To search WikiHow, you require a prefix.
   > Before you hunt, get a local license if it’s required, and make sure you have outerwear in “hunter’s orange,” which makes you visible to other hunters. Then, move as quietly as possible when you go into the hunting area, so you don’t spook the game. You should use binoculars to scan for game, then pay attention when you find a target to ensure it’s the game you’re hunting. Once you’re certain of your target and feel like you have a good, clean shot, then take it. Just be prepared to track and finish off the animal humanely if you don’t end up with a clean kill. For tips on how to choose the right weapon and ammunition for your hunt, keep reading!
 Took approximately 1 seconds to load results from WikiHow
 For more information on Hunt, visit https://www.wikihow.com/Hunt 
+
 Keep in Mind :
     
     > While hunting, stay as quiet as possible so you don't spook any close animals you are hunting.
