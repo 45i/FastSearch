@@ -8,7 +8,7 @@ It lets you search and obtain Information form WikiPedia, WikiHow and YouTube( W
 
 # Tasks and TODO
 - [ ] Add All Possible Languages to the Translator
-- [ ] Fix the Youtube Searcher
+- [X] Fix the Youtube Searcher
 
 
 ### you are free to contribute btw :)
