@@ -46,8 +46,9 @@ For more information on Hunt, visit https://www.wikihow.com/Hunt
 
 # Query Generators
   - ## Google
-    Prefix:-  - "**gs:** "
-              - "Who is "
+    Prefix:  
+    - "**gs:** "
+    - "Who is "
     ### Example Input
     - gs: Who is Dwayne Johnson?
     - Who is Dwayne Johnson?
@@ -55,4 +56,17 @@ For more information on Hunt, visit https://www.wikihow.com/Hunt
     - visit: https://www.google.com/search?q=who%20is%20dwayne%20johnson
     - visit: https://www.google.com/search?q=who%20is%20dwayne%20johnson
   - ## Bing
-    Prefix:-  
+    Prefix:  
+    - "**bg:** "
+    ### Example Input 
+    bg: Who is Dwayne Johnson?
+    ### Example Output
+    - visit: https://www.bing.com/search?q=who+is+dwayne+johnson
+  - ## Pypi.org
+    Prefix: 
+    - "**pip:** "
+    ### Example Input
+    pip: rickroll
+    ### Example Output
+    - visit: https://pypi.org/search/?q=rickroll
+    
