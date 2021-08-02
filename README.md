@@ -1,6 +1,6 @@
 # FastSearch 
 
-[![Download](https://img.shields.io/badge/Download-red)](https://github.com/45i/FastSearch/archive/refs/tags/v1.0.zip)
+[![Download](https://img.shields.io/badge/Download-red)](https://github.com/45i/FastSearch/archive/refs/tags/a.1.0.zip)
 
 # WTF is this??!! 
 FastSearch is a python program that I'm currently working on.
