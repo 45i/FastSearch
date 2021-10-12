@@ -1,0 +1,7 @@
+word2word
+wikipedia
+wikihowunofficialapi
+urllib3
+translate
+py8fact
+python-youtube
