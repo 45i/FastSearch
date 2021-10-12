@@ -19,7 +19,7 @@ print('"gs:" to only search Google \n'
       '"bn:" to only search Bing\n'
       '"pip:" to search pypi.org\n'
       '"yt:" to search videos on YouTube (Work In Progress)\n'
-      '"tr:" to translate word(s) (Work In Progress)\n'
+      '"tr:" to translate word(s) or sentence(s) (Work In Progress)\n'
       '"rickroll" to generate a rickroll link so that you can troll your friends ;)\n'
       '"random" to find a random Wikipedia article\n'
       '"fact" to generate a random fact')
@@ -90,7 +90,9 @@ if slist[0] == "tr:":
 
     tr = 0
     lang = input("translate to? (provide a language code [eg: french -> fr])")
+    lang_from = input("translate from? (provide a language code [eg: french -> fr])")
     lan= lang.upper()
+    lan_from = lang_from.upper()
     langlist = {
         'AA': 'Afar',
         'AB': 'Abkhazian',
@@ -243,8 +245,8 @@ if slist[0] == "tr:":
         translatesentence = translatesentence + slist[c] + " "
         c += 1
     print(translatesentence)
-    if langlist.get(lan) != None:
-        lan_conf = input(f'Did you mean {langlist.get(lan)}? REACT WITH: "yes"/ "no" ')
+    if langlist.get(lan) != None and langlist.get(lan_from) != None:
+        lan_conf = input(f'Did you mean {langlist.get(lan)} to {langlist.get(lan_from)}? REACT WITH: "yes"/ "no" ')
         if "yes" in lan_conf.lower():
             usemodel = input(
                 "Do you want to use a Word to Word model( Recommended for single word translations) or the Google Translator Model( Recommended for sentence translations) ? React with 1 or 2 ")
@@ -253,9 +255,9 @@ if slist[0] == "tr:":
 
                 while tr < len(translatesentence_split):
 
-                    en_to_lang = translate("en", f"{lan.lower()}")
+                    lang_to_lang = translate(f"{lan_from.lower()}", f"{lan.lower()}")
 
-                    translated_word = en_to_lang(translatesentence_split[tr])
+                    translated_word = lang_to_lang(translatesentence_split[tr])
 
                     print(f'"{translatesentence_split[tr]}" can be translated to {langlist.get(lan)} as:')
 
@@ -276,19 +278,16 @@ if slist[0] == "tr:":
 
                     f'Thus you could write "{translatesentence}" as "{translatedsentence}" [TRANSLATION MAY BE INCORRECT]')
             elif "2" in usemodel.lower():
-                lan_from = input("translate from? (provide a language code [eg: french -> fr])")
-
-
-                translator = Translator(to_lang=f"{lan.lower()}", from_lang="EN")
+                translator = Translator(to_lang=f"{lan.lower()}", from_lang=f"{lan_from.lower()}")
                 translation = translator.translate(translatesentence)
                 print(translation)
 
         elif "no" in lan_conf.lower():
             print(
-                "Well that's weird. Maybe you made a mistake in the language code? Since this is still Work In Progress, you could expect stuff like this. ")
+                "Well that's weird. Maybe you made a mistake in the language codes? Since this is still Work In Progress, you could expect stuff like this.")
     else:
         print(
-            "Well it looks like the language code doesn't exist :O")
+            "Well it looks like one or more of the language codes doesn't exist :O")
 
 elif slist[0] == "fact":
     print(facts.random_fact())
